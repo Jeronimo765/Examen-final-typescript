@@ -1,5 +1,4 @@
-
-import pool from "../db";
+import pool from "../src/db";
 import { timeToMinutes } from "../utils/time.utils";
 
 export class BookingsService {
@@ -46,7 +45,7 @@ export class BookingsService {
       throw err;
     }
 
-    // Regla 3: debe existir user y room
+
     const [userRows]: any = await conn.query("SELECT id FROM users WHERE id = ?", [booking.userId]);
     if (userRows.length === 0) {
       const err: any = new Error("El usuario no existe");
@@ -103,3 +102,4 @@ export class BookingsService {
     return { deleted: true };
   }
 }
+
